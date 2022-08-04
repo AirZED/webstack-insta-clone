@@ -1,0 +1,28 @@
+// body {
+//   background-color: #fafafa;
+//   margin: 0;
+//   padding: 0;
+//   width: 100%;
+// }
+
+
+* {
+  transition: 400ms linear;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+button {
+  cursor: pointer;
+  padding: unset;
+  border: unset;
+  background: unset;
+  transition: all 0.2s ease-in-out;
+  border-radius: 5px;
+  font-size: 1.5em;
+
+}
+
+.container {
+  padding: 0 15%;
+}
