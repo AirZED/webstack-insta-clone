@@ -29,12 +29,13 @@
       border-radius: 50%;
       cursor: pointer;
 
-      :hover {
-        opacity: 0.7;
-      }
+     
 
 
     }
+     img:hover {
+       filter: blur(2px);
+     }
   }
 
   .profile-info {
@@ -94,7 +95,7 @@
   background-color: #3d0505;
 }
 
-@media screen and (max-width: 760px) {
+@media (max-width: 760px) {
   .profile-photo {
     width: 5em;
     height: 5em;
@@ -107,6 +108,7 @@
   .bio{
     gap: .5rem;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
     padding: 3em 0 2em 0;
     

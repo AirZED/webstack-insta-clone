@@ -28,11 +28,18 @@ nav {
     width: 15.5em;
     border: 0.07em solid #dbdbdb;
     border-radius: 0.2em;
+    padding: .5rem;
 
     ::placeholder {
       text-align: center;
       color: #808080;
     }
+
+    
+  }
+
+  .search:focus {
+    background-color: #5a2020;
   }
 
   .nav-btns {
