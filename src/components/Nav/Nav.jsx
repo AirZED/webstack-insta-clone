@@ -5,7 +5,7 @@ function Nav(props) {
   return (
     <nav>
       <div className="logo">
-        <img src={logoImg} alt="logo" />
+        <img src={logoImg} alt="logo" className="logoImg" />
       </div>
       <input className="search" type="text" placeholder="search" />
 

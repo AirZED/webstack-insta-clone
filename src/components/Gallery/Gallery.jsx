@@ -21,13 +21,17 @@ const Gallery = (props) => {
 
   //Function that checks if images are available or not
   const galleryQty = async () => {
-    await galleryImages;
-    if (galleryImages && galleryImages.length > 0) {
-      setAmtOfImgs(galleryImages.length);
-      setCanRemove(true);
-    } else {
-      setAmtOfImgs(0);
-      setCanRemove(false);
+    try {
+      await galleryImages;
+      if (galleryImages && galleryImages.length > 0) {
+        setAmtOfImgs(galleryImages.length);
+        setCanRemove(true);
+      } else {
+        setAmtOfImgs(0);
+        setCanRemove(false);
+      }
+    } catch (error) {
+      console.log(error.message)
     }
   };
 
@@ -49,28 +53,38 @@ const Gallery = (props) => {
 
   //Function to add to Gallery
   const updateGalleryImageHandler = async () => {
-    db.gallery.add({
-      url: await getPhotoUrl("#addPhotoInput"),
-    });
+    try {
+      db.gallery.add({
+        url: await getPhotoUrl("#addPhotoInput"),
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const deleteHandler = async (classes, id) => {
     //First Function triggers when the classname = fas fa bla blabla
-    if (classes === "fa fa-trash") {
-      await galleryImages.map((each) => {
-        db.gallery.delete(each.id);
+    try {
+      if (classes === "fa fa-trash") {
+        await galleryImages.map((each) => {
+          db.gallery.delete(each.id);
+          galleryQty();
+          return 0;
+        });
+
+        //Function to remove individual Images
+      } else if (classes === "delete-in") {
+        await db.gallery.delete(id);
+        setModal(false);
         galleryQty();
-        return 0;
-      });
+      }
 
-      //Function to remove individual Images
-    } else if (classes === "delete-in") {
-      await db.gallery.delete(id);
-      setModal(false);
-      galleryQty();
+      cancelDeleteHandler();
+    } catch (error) {
+
+
+      console.log(error)
     }
-
-    cancelDeleteHandler();
   };
 
   //Component That shows when modal is empty

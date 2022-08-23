@@ -1,4 +1,3 @@
-// import { Nav, Gallery, Bio } from "./components/index";
 import { Nav, Gallery, Bio } from "./components/index";
 import "./App.scss";
 

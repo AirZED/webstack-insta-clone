@@ -2,7 +2,8 @@ nav {
   position: fixed;
   display: flex;
   top: 0;
-  right: 0; left: 0;
+  right: 0;
+  left: 0;
   background-color: #fff;
   height: 3.3em;
   line-height: 3.3em;
@@ -15,9 +16,11 @@ nav {
   .logo {
     text-decoration: none;
     width: fit-content;
+   
 
-    img {
+    .logoImg {
       vertical-align: middle;
+      display: block;
     }
   }
 
@@ -35,7 +38,7 @@ nav {
       color: #808080;
     }
 
-    
+
   }
 
   .search:focus {
@@ -49,12 +52,12 @@ nav {
     align-items: center;
     justify-content: center;
 
-    :hover{
+    :hover {
       color: #4d96f6;
     }
-    
 
-    button{
+
+    button {
       margin: 0 .5em;
     }
 
@@ -65,22 +68,37 @@ nav {
   }
 }
 
-@media (max-width: 760px){
+@media (max-width: 800px) {
+
+  .logo {
+    text-decoration: none;
+    width: fit-content;
+     margin: 0 1rem;
+
+    .logoImg {
+      vertical-align: middle;
+      inline-size: 70%;
+      display: none;
+    }
+  }
 
   .nav-btns {
-  display: flex;
-  padding: 0;
-  justify-content: space-between;
-   position: fixed;
-   bottom: 0; right: 0; left: 0;
-   height: 4em;
-   background-color: black;
-   z-index: 10000;
-  //  position: static;
+    display: flex;
+    padding: 0;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 4em;
+    background-color: black;
+    z-index: 10000;
+    //  position: static;
 
 
-  i{
-    color: white !important;
-  }
+    i {
+      color: white !important;
+    }
+
   }
 }
