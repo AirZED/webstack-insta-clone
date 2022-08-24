@@ -17,10 +17,16 @@ function Bio(props) {
     "Front-End Web Developer"
   );
 
+  const setUserDetails = ({ name, about }) => {
+    setUserNameValue(name);
+    setUserAboutValue(about);
+  };
   //Use Effect Hook for calling from Image from dataBase
   useEffect(() => {
     const setDataFromDb = async () => {
       (await userPhoto) && setProfileImage(userPhoto);
+
+      (await userDetails) && setUserDetails(userDetails);
     };
 
     //Calling the above async function
@@ -52,8 +58,8 @@ function Bio(props) {
     setEditFormIsOpen(false);
 
     //UPDATING STATE OF INPUT SECTION
-    setUserNameValue("");
-    setUserAboutValue("");
+    setUserNameValue(bioObjects.name);
+    setUserAboutValue(bioObjects.about);
   };
 
   const changeProfilePhoto = async () => {
@@ -111,9 +117,11 @@ function Bio(props) {
         <img src={profileImage} alt="Profile Icon" />
       </label>
       <div className="profile-info">
-        <p className="name">{userDetails ? userDetails.name : userNameValue}</p>
+        <p className="name">
+          {userDetails ? userDetails.name : "Mfoniso S. Ukpabio"}
+        </p>
         <p className="about">
-          {userDetails ? userDetails.about : userAboutValue}
+          {userDetails ? userDetails.about : "FrontEnd Web Developer"}
         </p>
         {!editFormIsOpen && <button onClick={openEditModal}>Edit</button>}
         {editFormIsOpen && editFormBlock}
