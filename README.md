@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+🚩ABOUT🚩
+Insta-Clone as I choose to call it is a PWA (Progressice web app) built with REACT JS, DEXIE JS, SASS, AND INDEXED DB that works a photogallery or profile showoff where you can show you profle information or Bio Data and also update Photos of you. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+It is a frontend application that saves uploaded information until even after reload using indexed BD. 
 
-## Available Scripts
+IndexedDB is a database provided by the browser that is more effecient that sesssion storage and localStorage as it takes it storage capacity from the storage available in your local Machine.
 
-In the project directory, you can run:
+Since indexedDB is a little cranky to manipulated using its core Js API, I made use of dexie Js (A minimalistic Indexed DB wrapper) to manipulated database, hence I used useLiveQuery, a hook of indexed DB to query the IndexedDB and React Js hooks for other reactive functionalities. 
 
-### `npm start`
+The made use of Service Worker to make it a PWA.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+🚩LOGIC INFORMATION🚩
+This APP core logic is written in React Js 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The APP is Made up of a Single Screen which is APP.JS and Four Components, which includes;
 
-### `npm test`
+Nav.jsx, Gallery.jsx, Bio.jsx and ConfirmDelete.jsx. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Each of these components are completely reuseable and contains its specific logic that is, The Nav components controls the Navigation Bar, The Bio Components controls the Bio Data Area, the Gallery Component controls the Gallery Area.
 
-### `npm run build`
+🚩KEYWORDS🚩
+useState, useEffect, useLiveQuery, database.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

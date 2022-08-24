@@ -9,9 +9,11 @@ function Bio(props) {
   const [profileImage, setProfileImage] = useState(profileIcon);
   const [editFormIsOpen, setEditFormIsOpen] = useState(false);
 
+
+  //use dexie js to query the database for bio data and profile information
   const userDetails = useLiveQuery(() => db.bio.get("info"));
   const userPhoto = useLiveQuery(() => db.bio.get("profilePhoto"));
-  // console.log(userDetails);
+  
   const [userNameValue, setUserNameValue] = useState("Mfoniso Ukpabio");
   const [userAboutValue, setUserAboutValue] = useState(
     "Front-End Web Developer"
@@ -31,7 +33,7 @@ function Bio(props) {
 
     //Calling the above async function
     setDataFromDb();
-  });
+  }, [userDetails, userPhoto]); //supplied dependency to reload useEffect each time the userDetails Changes.
 
   //Update the value of the input sections onclick
   const updateUserInputName = (e) => {
