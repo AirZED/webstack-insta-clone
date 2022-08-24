@@ -12,13 +12,15 @@ function Bio(props) {
   const userDetails = useLiveQuery(() => db.bio.get("info"));
   const userPhoto = useLiveQuery(() => db.bio.get("profilePhoto"));
   // console.log(userDetails);
-  const [userNameValue, setUserNameValue] = useState("");
-  const [userAboutValue, setUserAboutValue] = useState("");
+  const [userNameValue, setUserNameValue] = useState("Mfoniso Ukpabio");
+  const [userAboutValue, setUserAboutValue] = useState(
+    "Front-End Web Developer"
+  );
 
   //Use Effect Hook for calling from Image from dataBase
   useEffect(() => {
     const setDataFromDb = async () => {
-      userPhoto && setProfileImage(userPhoto);
+      (await userPhoto) && setProfileImage(userPhoto);
     };
 
     //Calling the above async function
@@ -109,9 +111,9 @@ function Bio(props) {
         <img src={profileImage} alt="Profile Icon" />
       </label>
       <div className="profile-info">
-        <p className="name">{userDetails && userDetails.name }</p>
+        <p className="name">{userDetails ? userDetails.name : userNameValue}</p>
         <p className="about">
-          {userDetails && userDetails.about}
+          {userDetails ? userDetails.about : userAboutValue}
         </p>
         {!editFormIsOpen && <button onClick={openEditModal}>Edit</button>}
         {editFormIsOpen && editFormBlock}

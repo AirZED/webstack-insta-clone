@@ -13,11 +13,32 @@ const Gallery = (props) => {
   const [modal, setModal] = useState(false);
   //Checks for possibility of removal of image
   const [canRemove, setCanRemove] = useState(true);
+  const [noImage, setNoImage] = useState(false);
 
   const galleryImages = useLiveQuery(
     async () => await db.gallery.toArray(),
     []
   );
+
+  //Use effect for checking length of array on initiliazation
+  useEffect(() => {
+    async function fetchData() {
+      // You can await here
+      await galleryImages;
+
+      if (galleryImages) {
+        const response = galleryImages;
+        if (response.length < 1) {
+          setNoImage(true);
+          setCanRemove(false);
+        } else {
+          setNoImage(false)
+          setCanRemove(true);
+        }
+      }
+    }
+    fetchData();
+  }, [galleryImages]);
 
   //Function that checks if images are available or not
   const galleryQty = async () => {
@@ -25,20 +46,16 @@ const Gallery = (props) => {
       await galleryImages;
       if (galleryImages && galleryImages.length > 0) {
         setAmtOfImgs(galleryImages.length);
-        setCanRemove(true);
+
+        return galleryImages.length;
       } else {
         setAmtOfImgs(0);
         setCanRemove(false);
       }
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
   };
-
-  //Use effect for checking length of array on initiliazation
-  useEffect(() => {
-    galleryQty();
-  });
 
   //Function for Delete Confirmation
   const confirmDeleteHandler = (id, value) => {
@@ -81,9 +98,7 @@ const Gallery = (props) => {
 
       cancelDeleteHandler();
     } catch (error) {
-
-
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -102,7 +117,6 @@ const Gallery = (props) => {
     <>
       {galleryImages ? (
         <>
-          {" "}
           <ConfimDeleteModal
             open={modal}
             close={cancelDeleteHandler}
@@ -138,27 +152,24 @@ const Gallery = (props) => {
             ></i>
           </div>
           <section className={canRemove ? "gallery" : "gallery inactive"}>
-            {!amtOfImgs ? (
-              <EmptyGallery />
-            ) : (
-              galleryImages
-                ?.map((each, id) => (
-                  <div className="item" key={each.id} id={id}>
-                    <img src={each.url} alt="item 1" className="item-image" />
-                    <button
-                      className="delete-button"
-                      onClick={confirmDeleteHandler.bind(
-                        null,
-                        "delete-in",
-                        each.id
-                      )}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                ))
-                .reverse()
-            )}
+            {noImage && <EmptyGallery />}
+            {galleryImages
+              ?.map((each, id) => (
+                <div className="item" key={each.id} id={id} draggable="true">
+                  <img src={each.url} alt="item 1" className="item-image" />
+                  <button
+                    className="delete-button"
+                    onClick={confirmDeleteHandler.bind(
+                      null,
+                      "delete-in",
+                      each.id
+                    )}
+                  >
+                    Delete
+                  </button>
+                </div>
+              ))
+              .reverse()}
           </section>
         </>
       ) : (

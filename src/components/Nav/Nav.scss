@@ -29,7 +29,7 @@ nav {
     height: 2em;
     margin: 0.8em;
     width: 15.5em;
-    border: 0.07em solid #dbdbdb;
+    border: 1px solid black;
     border-radius: 0.2em;
     padding: .5rem;
 
@@ -41,8 +41,9 @@ nav {
 
   }
 
-  .search:focus {
-    background-color: #5a2020;
+  .search:focus, .search:hover, .search:active {
+    border: 1px solid #4d96f6;
+    outline: none;
   }
 
   .nav-btns {
