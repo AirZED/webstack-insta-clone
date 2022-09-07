@@ -1,4 +1,4 @@
-#ABOUT#
+⚽ABOUT⚽
 Insta-Clone as I choose to call it is a PWA (Progressice web app) built with REACT JS, DEXIE JS, SASS, AND INDEXED DB that works a photogallery or profile showoff where you can show you profle information or Bio Data and also update Photos of you. 
 
 It is a frontend application that saves uploaded information until even after reload using indexed BD. 
@@ -9,7 +9,7 @@ Since indexedDB is a little cranky to manipulated using its core Js API, I made 
 
 The made use of Service Worker to make it a PWA.
 
-🚩LOGIC INFORMATION🚩
+⚽LOGIC INFORMATION⚽
 This APP core logic is written in React Js 
 
 The APP is Made up of a Single Screen which is APP.JS and Four Components, which includes;
@@ -18,9 +18,9 @@ Nav.jsx, Gallery.jsx, Bio.jsx and ConfirmDelete.jsx.
 
 Each of these components are completely reuseable and contains its specific logic that is, The Nav components controls the Navigation Bar, The Bio Components controls the Bio Data Area, the Gallery Component controls the Gallery Area.
 
-🚩KEYWORDS🚩
+⚽KEYWORDS⚽
 useState, useEffect, useLiveQuery, database.
 
-🚩LINK TO LIVE SITE🚩
+⚽LINK TO LIVE SITE⚽
 https://webstack-insta-clone.vercel.app/
 
