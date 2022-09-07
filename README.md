@@ -1,4 +1,4 @@
-🚩ABOUT🚩
+#ABOUT#
 Insta-Clone as I choose to call it is a PWA (Progressice web app) built with REACT JS, DEXIE JS, SASS, AND INDEXED DB that works a photogallery or profile showoff where you can show you profle information or Bio Data and also update Photos of you. 
 
 It is a frontend application that saves uploaded information until even after reload using indexed BD. 
