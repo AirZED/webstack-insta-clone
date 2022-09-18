@@ -1,15 +1,16 @@
-import "./Gallery.scss";
+import { Fragment } from "react";
+
 import getPhotoUrl from "get-photo-url";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../../db";
 import { useEffect, useState } from "react";
-import ConfimDeleteModal from "./ConfirmDeleteModal";
+import DeleteModal from "./ConfirmDeleteModal";
 import LoadingScreen from "../LoadingScreen";
+import "./Gallery.scss";
 
 let deleteIndex, deleteValue;
 
 const Gallery = (props) => {
-  const [amtOfImgs, setAmtOfImgs] = useState(0);
   const [modal, setModal] = useState(false);
   //Checks for possibility of removal of image
   const [canRemove, setCanRemove] = useState(true);
@@ -32,7 +33,7 @@ const Gallery = (props) => {
           setNoImage(true);
           setCanRemove(false);
         } else {
-          setNoImage(false)
+          setNoImage(false);
           setCanRemove(true);
         }
       }
@@ -45,11 +46,8 @@ const Gallery = (props) => {
     try {
       await galleryImages;
       if (galleryImages && galleryImages.length > 0) {
-        setAmtOfImgs(galleryImages.length);
-
         return galleryImages.length;
       } else {
-        setAmtOfImgs(0);
         setCanRemove(false);
       }
     } catch (error) {
@@ -62,6 +60,10 @@ const Gallery = (props) => {
     setModal(true);
     deleteIndex = id;
     deleteValue = value;
+  };
+
+  const openModal = () => {
+    setModal(true);
   };
 
   const cancelDeleteHandler = () => {
@@ -103,6 +105,8 @@ const Gallery = (props) => {
   };
 
   //Component That shows when modal is empty
+  //Backdrop
+
   const EmptyGallery = () => {
     return (
       <div className="emptydiv">
@@ -113,15 +117,19 @@ const Gallery = (props) => {
     );
   };
 
+  
+
   return (
     <>
       {galleryImages ? (
-        <>
-          <ConfimDeleteModal
-            open={modal}
-            close={cancelDeleteHandler}
-            delete={deleteHandler.bind(null, deleteIndex, deleteValue)}
-          />
+        <Fragment>
+          {modal && (
+            <DeleteModal
+              open={openModal}
+              close={cancelDeleteHandler}
+              delete={deleteHandler.bind(null, deleteIndex, deleteValue)}
+            />
+          )}
           <div className="discard-img ">
             <input
               id="addPhotoInput"
@@ -134,7 +142,9 @@ const Gallery = (props) => {
               className="add-photo-button"
               onClick={updateGalleryImageHandler}
             >
-              <i className="fas fa-plus-square" title="Add New Photo"></i>
+              <i className="fas fa-plus-square" title="Add New Photo">
+                +
+              </i>
             </label>
             <i
               className={canRemove ? "fa fa-trash" : "fa fa-trash inactive"}
@@ -171,7 +181,7 @@ const Gallery = (props) => {
               ))
               .reverse()}
           </section>
-        </>
+        </Fragment>
       ) : (
         <LoadingScreen />
       )}
